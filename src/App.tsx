@@ -1,12 +1,30 @@
 import './App.css'
+import {createBrowserRouter, type RouteObject, RouterProvider} from "react-router";
 
-function App() {
+const myRoutes: RouteObject[] = [
+    {
+        path: "/",
+        element: <Home/>
+    },
+    {
+        path: "/settings",
+        element: <Settings/>
+    }
+]
 
-  return (
-    <>
-
-    </>
-  )
+function Home() {
+    return (
+        <div>Home</div>
+    );
 }
 
-export default App
+
+function Settings() {
+    return (
+        <div>This is settings page hahaha</div>
+    );
+}
+
+export default function App() {
+    return <RouterProvider router={createBrowserRouter(myRoutes)}/>
+}
