@@ -1,10 +1,19 @@
 import './App.css'
-import {createBrowserRouter, Outlet, type RouteObject, RouterProvider} from "react-router";
+import {createBrowserRouter, type RouteObject, RouterProvider} from "react-router-dom";
+import Settings, {SettingsPrivacy, SettingsProfile} from "./pages/Settings.tsx";
+import Home from "./pages/Home.tsx";
+import Search from "./pages/Search.tsx";
 
 const myRoutes: RouteObject[] = [
     {
         path: "/",
-        element: <Home/>
+        element: <Home/>,
+        children: [
+            {
+                path: "search/:searchTerm",
+                element: <Search />
+            }
+        ]
     },
     {
         path: "/settings",
@@ -22,46 +31,7 @@ const myRoutes: RouteObject[] = [
     }
 ]
 
-function Home() {
-    return (
-        <>
-            <div>Home</div>
-            <div>
-                <a href="/settings">Settings</a>
-            </div>
-        </>
-    );
-}
 
-
-function Settings() {
-    return (
-        <>
-            <div>This is settings page hahaha</div>
-            <div>
-                <a href="/">&lt; Back</a>&nbsp;
-                <a href="/settings">Settings</a>&nbsp;
-                <a href="/settings/privacy">Privacy</a>&nbsp;
-                <a href="/settings/profile">Profile</a>
-            </div>
-            <Outlet/>
-        </>
-    );
-}
-
-
-function SettingsPrivacy() {
-    return (
-        <div>Setting / Privacy</div>
-    );
-}
-
-
-function SettingsProfile() {
-    return (
-        <div>Editing profile</div>
-    );
-}
 
 export default function App() {
     return <RouterProvider router={createBrowserRouter(myRoutes)}/>
