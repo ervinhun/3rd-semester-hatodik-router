@@ -1,4 +1,4 @@
-import {Outlet} from "react-router";
+import {Outlet, useLocation} from "react-router";
 
 export default function Settings() {
     return (
@@ -15,8 +15,14 @@ export default function Settings() {
     );
 }
 
+function logLocation(calledFrom:string) {
+    const path = useLocation();
+    console.log(path);
+    console.log(calledFrom);
+}
 
 export function SettingsPrivacy() {
+    logLocation("Privacy");
     return (
         <div>Setting / Privacy</div>
     );
@@ -24,6 +30,7 @@ export function SettingsPrivacy() {
 
 
 export function SettingsProfile() {
+    logLocation("Profile");
     return (
         <div>Editing profile</div>
     );
